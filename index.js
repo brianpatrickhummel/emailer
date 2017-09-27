@@ -1,18 +1,11 @@
 const express = require("express");
-const passport = require("passport");
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const logger = require("morgan");
-const keys = require('./config/keys');
+require('./services/passport');
 
 const app = express();
 
-// register the Google Strategy with Passport and create a new instance of this strategy
-passport.use(
-  new GoogleStrategy({
-    clientID: keys.googleClientID,
-    clientSecret: keys.googleClientSecret
-  })
-);
+// requires the exported function 'authRoutes' and pass the Express App as argument
+require('./routes/authRoutes')(app);
 
 // Run Morgan for Logging
 app.use(logger("dev"));
