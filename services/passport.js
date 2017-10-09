@@ -6,19 +6,17 @@ const keys = require("../config/keys");
 // This User object is a model class, from which new model instances can be created and saved to our database
 const User = mongoose.model("users");
 
-// the mongoose user model instance is converted into an id and inserted into cookie
+// the mongoose user model instance is converted into an id for insertion into token
 passport.serializeUser((user, done) => {
   done(null, user.id);
-})
+});
 
-// cookie user id is converted back into a mongoose user
+// cookie user id is converted back into a mongoose user model instance (req.user)
 passport.deserializeUser((id, done) => {
-  User.findById(id)
-    .then(user => {
-      done(null, user);
-    })
-})
-
+  User.findById(id).then(user => {
+    done(null, user);
+  });
+});
 
 // register the Google Strategy with Passport and create a new instance of this strategy
 passport.use(
@@ -28,7 +26,7 @@ passport.use(
       clientSecret: keys.googleClientSecret,
       callbackURL: "/auth/google/callback"
     },
-    // callback when Google has returned the following account data items
+    // Verify Callback when Google has returned the following account data items
     // done is a callback function
     (accessToken, refreshToken, profile, done) => {
       // console.log('profile: ', profile);
@@ -41,7 +39,6 @@ passport.use(
             .save()
             .then(user => done(null, user));
         }
-
       });
     }
   )
