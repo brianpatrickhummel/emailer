@@ -16,6 +16,8 @@ mongoose.connect(keys.mongoURI, { useMongoClient: true }).then(() => {
 const app = express();
 
 // COOKIES
+// will use 'cookie-session' and passport middleware to handle cookie data in http requests
+// middleware will handle cookie data prior to forwarding the request to route handlers
 // 'cookie-session' middleware stores session data within cookie on client-side
 // also extracts data out of cookie and assigns it to req.session property
 app.use(

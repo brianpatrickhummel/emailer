@@ -11,7 +11,7 @@ module.exports = app => {
   );
 
   // Passport returns authentication object and user code from Google, executes the callback in GoogleStrategy
-  // Attempts to exchange the code for a user profile
+  // Attempts to exchange the code for a user profile and accessToken
   app.get("/auth/google/callback", passport.authenticate("google"));
 
   // Passport also attaches a logout() method to the request object
@@ -23,6 +23,7 @@ module.exports = app => {
 
   // Route to return the current user
   app.get("/api/current_user", (req, res) => {
+    // returns the MongoDB user id that cookie-session extracted from cookie and Passport converted
     res.send(req.user);
   });
 };
