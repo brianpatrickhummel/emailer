@@ -4,11 +4,11 @@ const logger = require("morgan");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
-require("./models/User");
+require("./models/user");
 require("./services/passport");
 
 // Establish Mongoose connection to MongoDB on mLab.com using a driver via the standard MongoDB URI
-mongoose.Promise = require('bluebird');
+mongoose.Promise = require("bluebird");
 mongoose.connect(keys.mongoURI, { useMongoClient: true }).then(() => {
   console.log("Mongoose connected");
 });
