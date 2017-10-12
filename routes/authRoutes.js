@@ -21,7 +21,7 @@ module.exports = app => {
     res.send(req.user);
   });
 
-  // Route to return the current user
+  // Route for testing - to view the currently logged in user
   app.get("/api/current_user", (req, res) => {
     // returns the MongoDB user id that cookie-session extracted from cookie and Passport converted
     res.send(req.user);
