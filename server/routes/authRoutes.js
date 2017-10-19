@@ -13,13 +13,9 @@ module.exports = app => {
   // Passport returns authentication object and user code from Google, executes the callback in GoogleStrategy
   // Attempts to exchange the code for a user profile and accessToken
   // Once authenticated, redirects to surveys page
-  app.get(
-    "/auth/google/callback",
-    passport.authenticate("google"),
-    (req, res) => {
-      res.redirect("/surveys");
-    }
-  );
+  app.get("/auth/google/callback", passport.authenticate("google"), (req, res) => {
+    res.redirect("/surveys");
+  });
 
   // Passport also attaches a logout() method to the request object
   // method removes the req.user property and clears the login session

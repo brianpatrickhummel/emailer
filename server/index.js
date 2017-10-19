@@ -1,4 +1,5 @@
 const express = require("express");
+const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const logger = require("morgan");
 const cookieSession = require("cookie-session");
@@ -7,6 +8,7 @@ const keys = require("./config/keys");
 require("./models/user");
 require("./services/passport");
 
+// DATABASE
 // Establish Mongoose connection to MongoDB on mLab.com using a driver via the standard MongoDB URI
 mongoose.Promise = require("bluebird");
 mongoose.connect(keys.mongoURI, { useMongoClient: true }).then(() => {
@@ -15,10 +17,12 @@ mongoose.connect(keys.mongoURI, { useMongoClient: true }).then(() => {
 
 const app = express();
 
-// COOKIES
-// will use 'cookie-session' and passport middleware to handle cookie data in http requests
-// middleware will handle cookie data prior to forwarding the request to route handlers
-// 'cookie-session' middleware stores session data within cookie on client-side
+// MIDDLEWARES
+// Run Morgan for Logging
+app.use(logger("dev"));
+// parse req object on http request and make body available on req.body property
+app.use(bodyParser.json());
+// stores session data within cookie on client-side
 // also extracts data out of cookie and assigns it to req.session property
 app.use(
   cookieSession({
@@ -31,11 +35,11 @@ app.use(passport.initialize());
 // passport.session calls the deserializeUser() method
 app.use(passport.session());
 
-// Requires the exported function 'authRoutes' and pass the Express App as argument
+// ROUTES
+// Requires the exported function 'authRoutes' & 'billingRoutes', pass the Express App as argument
+// require statement turns into a function name which gets called, passing in App
 require("./routes/authRoutes")(app);
-
-// Run Morgan for Logging
-app.use(logger("dev"));
+require("./routes/billingRoutes")(app);
 
 // Dynamic PORT binding to cover both local development and Heroku Deployment
 const PORT = process.env.PORT || 5000;

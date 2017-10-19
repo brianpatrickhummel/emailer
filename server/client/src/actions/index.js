@@ -1,4 +1,5 @@
 // action creators index.js
+// redux-thunk is already loaded into our Redux Store as a middleware
 
 import axios from "axios";
 import { FETCH_USER } from "./types";

@@ -6,7 +6,11 @@ const { Schema } = mongoose; // rather than const schema = mongoose.Schema;
 
 // Instantiate a userSchema object with the Schema class
 const userSchema = new Schema({
-  googleID: String
+  googleID: String,
+  credits: {
+    type: Number,
+    default: 0
+  }
 });
 
 // Create a "users" model with the userSchema schema and loads the schema into Mongoose
