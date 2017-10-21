@@ -41,6 +41,17 @@ app.use(passport.session());
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
 
+// Serving React assets via Express Server when in Production Environment
+if (process.env.NODE_ENV === "production") {
+  // For traffic that is un-routed, first look for files to serve here
+  app.use(express.static("client/build"));
+  // For all remaining unfulfillable requests, serve the React index.html
+  const path = require("path");
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
+
 // Dynamic PORT binding to cover both local development and Heroku Deployment
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, function() {
