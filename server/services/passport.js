@@ -39,6 +39,7 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser);
       }
+      // Create a new instance/document of the User Model
       const user = await new User({ googleID: profile.id }).save();
       done(null, user);
     }

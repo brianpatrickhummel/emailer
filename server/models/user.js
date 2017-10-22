@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 // Create the Schema class
 const { Schema } = mongoose; // rather than const schema = mongoose.Schema;
-// states....the mongoose object has a property called Schema, take that property and assign it to a new variable called Schema
+// states that the mongoose object has a property called Schema, take that property and assign it to a new variable called Schema
 // Schema is an object that defines the structure of any documents that will be stored in your MongoDB collection; it enables you to define types and validators for all of your data items.
 
 // Instantiate a userSchema object with the Schema class

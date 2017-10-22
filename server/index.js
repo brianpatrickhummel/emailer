@@ -5,7 +5,8 @@ const logger = require("morgan");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
-require("./models/user");
+require("./models/User");
+require("./models/Survey");
 require("./services/passport");
 
 // DATABASE
@@ -40,6 +41,7 @@ app.use(passport.session());
 // require statement turns into a function name which gets called, passing in App
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
+require("./routes/surveyRoutes")(app);
 
 // Serving React assets via Express Server when in Production Environment
 if (process.env.NODE_ENV === "production") {
