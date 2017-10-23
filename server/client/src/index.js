@@ -10,6 +10,10 @@ import reduxThunk from "redux-thunk";
 import App from "./components/App"; // a default export.....no braces
 import reducers from "./reducers";
 
+// Temp for testing SendGrid emails directly from Chrome Console
+import axios from "axios";
+window.axios = axios;
+
 // Create our Redux Store, pass in reducers, empty state object and the applyMiddleware method
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
