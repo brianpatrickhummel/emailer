@@ -7,7 +7,7 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
-  app.post("/api/surveys", requireLogin, requireCredits, (req, res) => {
+  app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     // ES6 Destructuring
     // const title = req.body.title;
     // const subject = req.body.subject;
@@ -28,12 +28,24 @@ module.exports = app => {
       dateSent: Date.now()
     });
 
-    // Generate new instance of sendgrid Mailer and call the send function
-    const mailer = new Mailer(survey, surveyTemplate(survey));
-    mailer.send();
+    // Generate new instance of SendGrid Mailer and call the send function
+    try {
+      const mailer = new Mailer(survey, surveyTemplate(survey));
+      await mailer.send();
+      await survey.save();
+      req.user.credits -= 1;
+      const user = await req.user.save(); // create new variable since req.user will no longer be current
+
+      res.send(user); // send updated User Model so our Header component renders updated Credits
+    } catch (err) {
+      res.status(422).send(err);
+    }
   });
 
-  app.get("api/surveys", (req, res) => {});
+  // Post-survey response landing page
+  app.get("/api/surveys/feedback", (req, res) => {
+    res.send("Thank you for your feedback!");
+  });
 
   app.post("api/surveys/webhooks", (req, res) => {});
 };
