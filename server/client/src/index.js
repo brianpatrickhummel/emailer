@@ -1,6 +1,7 @@
 // client root-level index.js
 
 import "materialize-css/dist/css/materialize.min.css";
+import "materialize-css/dist/js/materialize.min.js";
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
