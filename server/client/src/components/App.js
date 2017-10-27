@@ -15,8 +15,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="appContainer">
         <BrowserRouter>
+          {/* Container class adds Materialize margins */}
           <div className="container">
             <Header />
             <Route exact path="/" component={Landing} />
