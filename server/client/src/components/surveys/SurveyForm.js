@@ -5,23 +5,28 @@ import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import SurveyField from "./SurveyField";
 import { Link } from "react-router-dom";
+import validateEmails from "../../utils/validateEmails";
 
 const FIELDS = [
   {
     label: "Survey Title",
-    name: "title"
+    name: "title",
+    noValueError: "You must give this survey a title"
   },
   {
     label: "Subject Line",
-    name: "subject"
+    name: "subject",
+    noValueError: "You must provide text for email subject"
   },
   {
     label: "Email Body",
-    name: "body"
+    name: "body",
+    noValueError: "You must provide text for email body"
   },
   {
     label: "Recipient List",
-    name: "emails"
+    name: "emails",
+    noValueError: "You must provide recipient email addresses"
   }
 ];
 
@@ -57,18 +62,15 @@ class SurveyForm extends Component {
 const validate = values => {
   const errors = {};
 
-  if (!values.title) {
-    errors.title = "You must give this survey a title";
-  }
-  if (!values.subject) {
-    errors.subject = "You must provide text for email subject";
-  }
-  if (!values.body) {
-    errors.body = "You must provide text for email body";
-  }
-  if (!values.emails) {
-    errors.emails = "You must provide a emails";
-  }
+  // Pass email string to our validateEmails /utils fn, if returned gets assigned to errors object
+  errors.emails = validateEmails(values.emails || "");
+
+  // For each field in FIELDS object, check if the values object has a corresponding key name, if not then push the respective error message from the FIELDS object to the ERRORS object
+  _.each(FIELDS, ({ name, noValueError }) => {
+    if (!values[name]) {
+      errors[name] = noValueError;
+    }
+  });
 
   return errors;
 };

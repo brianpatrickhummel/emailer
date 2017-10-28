@@ -15,7 +15,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="appContainer">
+      <div>
         <BrowserRouter>
           {/* Container class adds Materialize margins */}
           <div className="container">
