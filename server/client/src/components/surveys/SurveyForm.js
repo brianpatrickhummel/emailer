@@ -1,39 +1,15 @@
 // Shows form for user input
 
-import _ from "lodash";
 import React, { Component } from "react";
 import { reduxForm, Field } from "redux-form";
 import SurveyField from "./SurveyField";
 import { Link } from "react-router-dom";
 import validateEmails from "../../utils/validateEmails";
-
-// Object to hold our survey field values to be rendered into SurveyField component via map()
-const FIELDS = [
-  {
-    label: "Survey Title",
-    name: "title",
-    noValueError: "You must give this survey a title"
-  },
-  {
-    label: "Subject Line",
-    name: "subject",
-    noValueError: "You must provide text for email subject"
-  },
-  {
-    label: "Email Body",
-    name: "body",
-    noValueError: "You must provide text for email body"
-  },
-  {
-    label: "Recipient List",
-    name: "emails",
-    noValueError: "You must provide recipient email addresses"
-  }
-];
+import formFields from "./formFields";
 
 class SurveyForm extends Component {
   renderFields() {
-    return _.map(FIELDS, ({ label, name }) => {
+    return formFields.map(({ label, name }) => {
       return <Field key={name} label={label} name={name} type="text" component={SurveyField} />;
     });
   }
@@ -65,10 +41,10 @@ const validate = values => {
   const errors = {};
 
   // Pass email string to our validateEmails /utils fn, if returned gets assigned to errors object
-  errors.emails = validateEmails(values.emails || "");
+  errors.recipients = validateEmails(values.recipients || "");
 
   // For each field in FIELDS object, check if the values object has a corresponding key name, if not then push the respective error message from the FIELDS object to the ERRORS object
-  _.each(FIELDS, ({ name, noValueError }) => {
+  formFields.forEach(({ name, noValueError }) => {
     if (!values[name]) {
       errors[name] = noValueError;
     }

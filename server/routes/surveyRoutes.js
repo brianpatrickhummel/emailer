@@ -47,5 +47,10 @@ module.exports = app => {
     res.send("Thank you for your feedback!");
   });
 
-  app.post("api/surveys/webhooks", (req, res) => {});
+  app.post("/api/surveys/webhooks", (req, res) => {
+    console.log(req.body);
+
+    // Respond to SendGrid request with an empty object
+    res.send({});
+  });
 };
