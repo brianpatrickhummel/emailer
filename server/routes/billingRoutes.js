@@ -1,3 +1,5 @@
+// Stripe Billing Routes
+
 const keys = require("../config/keys");
 var stripe = require("stripe")(keys.stripeSecretKey);
 const requireLogin = require("../middlewares/requireLogin");

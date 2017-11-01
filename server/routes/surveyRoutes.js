@@ -1,3 +1,5 @@
+// Survey & Emailer Creation Routes
+
 const _ = require("lodash");
 const Path = require("path-parser");
 const { URL } = require("url");
@@ -11,6 +13,7 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
+  // Save new Survey to MongoDB and forward to SendGrid to send emails
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     // ES6 Destructuring
     // const title = req.body.title;
@@ -46,12 +49,7 @@ module.exports = app => {
     }
   });
 
-  // Post-survey response landing page (handles both Yes & No responses)
-  app.get("/api/surveys/:surveyid/:response", (req, res) => {
-    res.send("Thank you for your feedback!");
-  });
-
-  // Managing Survey Response Data from SendGrid Webhook
+  // Managing Survey Feedback Data from SendGrid Webhook
   app.post("/api/surveys/webhooks", (req, res) => {
     // =============== PREPROCESSING ===============
     // Define path pattern to test against
@@ -102,5 +100,10 @@ module.exports = app => {
 
     // Send response to SendGrid
     res.send({});
+  });
+
+  // SendGrid Redirect post-submission survey feedback (handles both Yes & No responses)
+  app.get("/api/surveys/:surveyid/:response", (req, res) => {
+    res.send("Thank you for your feedback!");
   });
 };

@@ -9,14 +9,15 @@ require("./models/User");
 require("./models/Survey");
 require("./services/passport");
 
+// Instantiate an Express app instance as app object
+const app = express();
+
 // DATABASE
 // Establish Mongoose connection to MongoDB on mLab.com using a driver via the standard MongoDB URI
 mongoose.Promise = require("bluebird");
 mongoose.connect(keys.mongoURI, { useMongoClient: true }).then(() => {
   console.log("Mongoose connected");
 });
-
-const app = express();
 
 // MIDDLEWARES
 // Run Morgan for Logging
@@ -37,7 +38,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // ROUTES
-// Requires the exported function 'authRoutes' & 'billingRoutes', pass the Express App as argument
+// Requires the exported functions, pass the Express App object as argument
 // require statement turns into a function name which gets called, passing in App
 require("./routes/authRoutes")(app);
 require("./routes/billingRoutes")(app);
@@ -47,7 +48,7 @@ require("./routes/surveyRoutes")(app);
 if (process.env.NODE_ENV === "production") {
   // For traffic that is un-routed, first look for files to serve here
   app.use(express.static("client/build"));
-  // For all remaining unrouteable requests, serve the React index.html
+  // For all remaining un-routed requests, serve the React index.html
   const path = require("path");
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
