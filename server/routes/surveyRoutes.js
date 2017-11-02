@@ -13,6 +13,14 @@ const surveyTemplate = require("../services/emailTemplates/surveyTemplate");
 const Survey = mongoose.model("surveys");
 
 module.exports = app => {
+  // Get all surveys for current user
+  app.get("/api/surveys", requireLogin, async (req, res) => {
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: false })
+      .sort({ dateSent: "asc" });
+    res.send(surveys);
+  });
+
   // Save new Survey to MongoDB and forward to SendGrid to send emails
   app.post("/api/surveys", requireLogin, requireCredits, async (req, res) => {
     // ES6 Destructuring
@@ -79,7 +87,7 @@ module.exports = app => {
       .each(({ surveyId, email, choice }) => {
         Survey.updateOne(
           {
-            // Identiry recomrd w surveyId, email and a false value for responded
+            // Identify records w/matching surveyId/email and a false value for responded
             _id: surveyId,
             recipients: {
               $elemMatch: {
@@ -89,7 +97,9 @@ module.exports = app => {
             }
           },
           {
+            // increment either yes/no (ES6 Key Interpolation)
             $inc: { [choice]: 1 },
+            // set value for the elemMatched recipients
             $set: { "recipients.$.responded": true },
             lastResponded: new Date()
           }
