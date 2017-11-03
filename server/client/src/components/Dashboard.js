@@ -7,7 +7,11 @@ const Dashboard = () => {
     <div className="dashboardContainer">
       <SurveyList />
       <div className="fixed-action-btn">
-        <Link to={"/surveys/new"} className="btn-floating btn-large waves-effect waves-light waves-circle red">
+        <Link
+          to={"/surveys/new"}
+          className="btn-floating btn-large pulse waves-effect waves-light waves-circle red lighten-2"
+          style={{ marginRight: "20px", marginBottom: "20px" }}
+        >
           <i className="large material-icons" style={{ fontSize: "50px" }}>
             add
           </i>

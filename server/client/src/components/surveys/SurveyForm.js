@@ -8,6 +8,12 @@ import validateEmails from "../../utils/validateEmails";
 import formFields from "./formFields";
 
 class SurveyForm extends Component {
+  componentDidMount() {
+    if (this.props.addActive) {
+      this.props.addActive();
+    }
+  }
+
   renderFields() {
     return formFields.map(({ label, name }) => {
       return <Field key={name} label={label} name={name} type="text" component={SurveyField} />;

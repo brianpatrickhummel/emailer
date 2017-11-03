@@ -18,7 +18,7 @@ class App extends Component {
       <div>
         <BrowserRouter>
           {/* Container class adds Materialize margins */}
-          <div className="container">
+          <div className="container" style={{ height: "100%" }}>
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />

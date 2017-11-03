@@ -9,29 +9,33 @@ import * as actions from "../../actions";
 const SurveyFormReview = ({ onCancel, formValues, submitSurvey, history }) => {
   const reviewFields = formFields.map(({ label, name }) => {
     return (
-      <div key={name}>
-        <label>{label}</label>
-        <div>{formValues[name]}</div>
+      <div key={name} style={{ marginBottom: "30px" }}>
+        <label style={{ fontSize: "18px", color: "#ee6e73" }}>{label}</label>
+        <div className="white-text">{formValues[name]}</div>
       </div>
     );
   });
 
   return (
-    <div>
-      <h5>Please confirm your entries</h5>
+    <div style={{ marginTop: "50px" }}>
+      <h5 className="white-text" style={{ marginBottom: "30px" }}>
+        Please confirm your entries
+      </h5>
       <div>{reviewFields}</div>
-      <button onClick={onCancel} type="cancel" className="btn-flat yellow darken3 white-text">
-        <i className="material-icons right">arrow_back</i>
-        Back
-      </button>
-      <button
-        type="submit"
-        onClick={() => submitSurvey(formValues, history)}
-        className="btn-flat green right white-text"
-      >
-        <i className="material-icons right">email</i>
-        Send Survey
-      </button>
+      <div style={{ marginTop: "70px" }}>
+        <button onClick={onCancel} type="cancel" className="btn yellow darken-3 white-text">
+          <i className="material-icons right">arrow_back</i>
+          Back
+        </button>
+        <button
+          type="submit"
+          onClick={() => submitSurvey(formValues, history)}
+          className="btn blue-grey right white-text"
+        >
+          <i className="material-icons right">email</i>
+          Send Survey
+        </button>
+      </div>
     </div>
   );
 };

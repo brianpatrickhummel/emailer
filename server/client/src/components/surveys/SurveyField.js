@@ -4,9 +4,11 @@ import React from "react";
 
 export default ({ input, label, meta: { error, touched } }) => {
   return (
-    <div style={{ marginTop: "50px" }}>
-      <label style={{ fontSize: "18px" }}>{label}</label>
-      <input style={{ marginBottom: "5px" }} {...input} />
+    <div className="input-field" style={{ marginTop: "50px" }}>
+      <label className="labels" style={{ fontSize: "18px" }}>
+        {label}
+      </label>
+      <input className="white-text" type="text" style={{ marginBottom: "5px" }} {...input} />
       <div className="red-text" style={{ marginBottom: "5px" }}>
         {touched && error}
       </div>

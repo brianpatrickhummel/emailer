@@ -6,15 +6,14 @@ module.exports = survey => {
   return `
     <html>
       <body>
-        <div style="text-align: center">
-          <h3>I'd like your input!</h3>
-          <p>We'd appreciate your feedback to the following question:</p>
-          <p>${survey.body}</p>
-          <div>
-            <a href="${keys.redirectDomain}/api/surveys/${survey.id}/yes">Yes</a>
-          </div>
-          <div>
-            <a href="${keys.redirectDomain}/api/surveys/${survey.id}/no">No</a>
+        <div>
+          <h3 style="text-align: center">Your feedback is important to us!</h3>
+          <p style="text-align: center">We'd appreciate it you'd answer the following question:</p>
+          <h4 style="text-align: center">${survey.body}</h4>
+          <div style="text-align: center">
+            <a style="margin: 10px" href="${keys.redirectDomain}/api/surveys/${survey.id}/yes">YES</a>
+
+            <a style="margin: 10px" href="${keys.redirectDomain}/api/surveys/${survey.id}/no">NO</a>
           </div>
         </div>
       </body>
