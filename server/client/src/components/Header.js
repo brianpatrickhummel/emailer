@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Payments from "./Payments";
+import styled from "styled-components";
+import { Icon } from "react-materialize";
+import FontAwesome from "react-fontawesome";
 
 class Header extends Component {
   renderContent() {
@@ -30,14 +33,12 @@ class Header extends Component {
   }
 
   render() {
-    // test value of auth prop received from state
-    // console.log(this.props);
     return (
       <nav>
         {
           <div className="nav-wrapper">
-            <Link to={this.props.auth ? "/surveys" : "/"} className="left brand-logo" style={{ margin: "0 10px" }}>
-              Emailer
+            <Link to={this.props.auth ? "/surveys" : "/"} className="left brand-logo" style={{ margin: "0 30px" }}>
+              <FontAwesome name="paper-plane" />
             </Link>
             <ul className="right">{this.renderContent()}</ul>
           </div>

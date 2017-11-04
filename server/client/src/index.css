@@ -1,0 +1,37 @@
+/* ====== Fonts ====== */
+
+@font-face {
+  font-family: "IkarosLight";
+  src: url(./fonts/Ikaros-Light.otf);
+}
+
+@font-face {
+  font-family: "IkarosRegular";
+  src: url(./fonts/Ikaros-Regular.otf);
+}
+
+@font-face {
+  font-family: "Prisma";
+  src: url(./fonts/Prisma.ttf);
+}
+
+@font-face {
+  font-family: "Cassanet";
+  src: url(./fonts/Cassanet.ttf);
+}
+
+@font-face {
+  font-family: "Exodus";
+  src: url(./fonts/Exodus.otf);
+}
+
+.collapsible-header {
+  line-height: 3.1em;
+}
+
+.collapsible-body {
+  background: #395463;
+  color: white;
+  border: none;
+  letter-spacing: .1em;
+}

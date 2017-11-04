@@ -8,7 +8,7 @@ export default ({ input, label, meta: { error, touched } }) => {
       <label className="labels" style={{ fontSize: "18px" }}>
         {label}
       </label>
-      <input className="white-text" type="text" style={{ marginBottom: "5px" }} {...input} />
+      <input className="white-text" type="text" style={{ marginBottom: "5px" }} {...input} autocomplete="off" />
       <div className="red-text" style={{ marginBottom: "5px" }}>
         {touched && error}
       </div>

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actions from "../actions";
+import styled from "styled-components";
+import "../index.css";
 
 import Header from "./Header";
 import Landing from "./Landing";
@@ -14,16 +16,21 @@ class App extends Component {
   }
 
   render() {
+    const Wrapper = styled.div`
+      font-family: "Cassanet";
+      height: 100%;
+    `;
+
     return (
       <div>
         <BrowserRouter>
           {/* Container class adds Materialize margins */}
-          <div className="container" style={{ height: "100%" }}>
+          <Wrapper className="container">
             <Header />
             <Route exact path="/" component={Landing} />
             <Route exact path="/surveys" component={Dashboard} />
             <Route path="/surveys/new" component={SurveyNew} />
-          </div>
+          </Wrapper>
         </BrowserRouter>
       </div>
     );
