@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Payments from "./Payments";
-import styled from "styled-components";
-import { Icon } from "react-materialize";
 import FontAwesome from "react-fontawesome";
 
 class Header extends Component {
