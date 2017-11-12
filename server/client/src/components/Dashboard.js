@@ -11,17 +11,18 @@ class Dashboard extends Component {
   // Create local state for reference by the conditional governing display of modal dialog box
   state = { modalIsOpen: false, count: 0, hasCredits: false };
 
-  // If user has no credits, display the modal dialog w instructions for testing the app
   componentDidUpdate() {
+    // If user has no credits, display the modal dialog w instructions for testing the app
     if (this.props.auth.credits < 1 && this.state.count === 0) {
       this.setState({ modalIsOpen: true, count: 1 });
+      // If user just purchased credits, adjust state so that Add Survey button will render
     } else if (!this.state.hasCredits && this.props.auth.credits > 1) {
       this.setState({ hasCredits: true });
     }
   }
 
   render() {
-    console.log(this.state);
+    // Add Survey button is rendered only if local state indicates user has > 0 credits
     var addButton = null;
     if (this.state.hasCredits) {
       addButton = (
