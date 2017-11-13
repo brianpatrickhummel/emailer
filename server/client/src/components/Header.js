@@ -18,7 +18,7 @@ class Header extends Component {
         );
       default:
         return [
-          <li key="1">
+          <li className="payButton" key="1">
             <Payments />
           </li>,
           <li key="2">Credits: {this.props.auth.credits}</li>,
@@ -38,10 +38,10 @@ class Header extends Component {
               <FontAwesome name="paper-plane" />
             </Link>
             {/* MaterializeCSS collapsible sidebar menu config - initialized in index.html jQuery script */}
-            <a href="#" data-activates="mobile-demo" className="button-collapse right">
+            <a data-activates="mobile-demo" className="button-collapse right">
               <i className="material-icons">menu</i>
             </a>
-            <ul className="right hide-on-med-and-down">{this.renderContent()}</ul>
+            <ul className="right hide-on-med-and-down top-nav">{this.renderContent()}</ul>
             <ul className="side-nav" id="mobile-demo">
               {this.renderContent()}
             </ul>

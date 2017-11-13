@@ -82,14 +82,17 @@
 }
 
 /* ==== HEADER Component ==== */
+.top-nav .payButton {
+  margin-right: 18px;
+}
+
 .side-nav {
   text-align: center;
   background-color: rgba(1, 1, 1, 0.8);
-  padding: 10px;
 }
 
 .side-nav > * {
-  margin: 10px;
+  margin: 15px 10px 0 10px;
   background-color: rgba(238, 110, 115, 0.75);
   border: 1px solid rgba(238, 110, 115, 0.5);
   border-radius: 10px;
