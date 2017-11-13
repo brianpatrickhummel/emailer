@@ -9,17 +9,52 @@ import "../index.css";
 
 class Dashboard extends Component {
   // Create local state for reference by the conditional governing display of modal dialog box
-  state = { modalIsOpen: false, count: 0, hasCredits: false };
+  state = {
+    modalIsOpen: false,
+    count: 0,
+    hasCredits: false,
+    deleteModalIsOpen: false,
+    deleteId: null,
+    deleteTitle: null
+  };
 
-  componentDidUpdate() {
-    // If user has no credits, display the modal dialog w instructions for testing the app
-    if (this.props.auth.credits < 1 && this.state.count === 0) {
-      this.setState({ modalIsOpen: true, count: 1 });
-      // If user just purchased credits, adjust state so that Add Survey button will render
-    } else if (!this.state.hasCredits && this.props.auth.credits > 1) {
-      this.setState({ hasCredits: true });
+  componentDidMount() {
+    console.log("component did mount - this.props.auth= ", this.props.auth);
+    if (this.props.auth) {
+      // If user has no credits, display the modal dialog w instructions for testing the app
+      if (this.props.auth.credits < 1 && this.state.count === 0) {
+        this.setState({ modalIsOpen: true, count: 1 });
+        // If user just purchased credits, adjust state so that Add Survey button will render
+      } else if (!this.state.hasCredits && this.props.auth.credits > 1) {
+        this.setState({ hasCredits: true });
+      }
     }
   }
+
+  componentWillReceiveProps() {
+    console.log("component will receive props - this.props.auth= ", this.props.auth);
+  }
+
+  componentDidUpdate() {
+    console.log("component did update - this.props.auth= ", this.props.auth);
+    if (this.props) {
+      // If user has no credits, display the modal dialog w instructions for testing the app
+      if (this.props.auth.credits < 1 && this.state.count === 0) {
+        this.setState({ modalIsOpen: true, count: 1 });
+        // If user just purchased credits, adjust state so that Add Survey button will render
+      } else if (!this.state.hasCredits && this.props.auth.credits > 1) {
+        this.setState({ hasCredits: true });
+      }
+    }
+  }
+
+  deleteModalOpen = (id, title) => {
+    this.setState({ deleteModalIsOpen: true, deleteId: id, deleteTitle: title });
+  };
+
+  deleteModalClose = () => {
+    this.setState({ deleteModalIsOpen: false });
+  };
 
   render() {
     // Add Survey button is rendered only if local state indicates user has > 0 credits
@@ -29,8 +64,8 @@ class Dashboard extends Component {
         <div className="fixed-action-btn">
           <Link
             to={"/surveys/new"}
+            id="addNewSurveyButton"
             className="btn-floating btn-large pulse waves-effect waves-light waves-circle red lighten-2"
-            style={{ marginRight: "20px", marginBottom: "20px" }}
           >
             <i className="large material-icons" style={{ fontSize: "50px" }}>
               add
@@ -42,7 +77,7 @@ class Dashboard extends Component {
 
     return (
       <div className="dashboardContainer">
-        <SurveyList />
+        <SurveyList deleteModalOpen={this.deleteModalOpen} />
         {addButton}
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -74,12 +109,53 @@ class Dashboard extends Component {
             OK
           </Button>
         </Modal>
+        <Modal
+          isOpen={this.state.deleteModalIsOpen}
+          onAfterOpen={this.afterOpenModal}
+          onRequestClose={this.closeModal}
+          style={modalStyle2}
+          contentLabel="Example Modal"
+        >
+          <i className="large material-icons" id="stopHand">
+            pan_tool
+          </i>
+          <p style={{ letterSpacing: "0.03em" }}>Permanently delete this survey? </p>
+          <h4
+            style={{
+              color: "#FCC2C5",
+              fontWeight: "bolder",
+              marginTop: "30px",
+              letterSpacing: "0.1em",
+              backgroundColor: "#6C5455",
+              borderRadius: "25px"
+            }}
+          >
+            {this.state.deleteTitle}
+          </h4>
+          <Button
+            waves="light"
+            onClick={() => this.setState({ deleteModalIsOpen: false })}
+            className="left"
+            id="deleteSurveyCancelButton"
+          >
+            Cancel
+          </Button>
+          <Button
+            waves="light"
+            onClick={() => this.setState({ deleteModalIsOpen: false })}
+            className="right"
+            id="deleteSurveyButton"
+          >
+            Delete
+          </Button>
+        </Modal>
       </div>
     );
   }
 }
 
 function mapStateToProps({ auth }) {
+  console.log("mapped state to props");
   return { auth };
 }
 
@@ -111,6 +187,26 @@ const modalStyle = {
     padding: "50px",
     color: "rgb(236,111,117)",
     backgroundColor: "rgba(66,57,58,0.9)",
+    border: "1px solid white",
+    borderRadius: "10px",
+    fontFamily: "IkarosLight",
+    fontSize: "20px",
+    textTransform: "uppercase"
+  }
+};
+
+const modalStyle2 = {
+  content: {
+    textAlign: "center",
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+    padding: "50px",
+    color: "rgb(236,111,117)",
+    backgroundColor: "rgba(66,57,58,1)",
     border: "1px solid white",
     borderRadius: "10px",
     fontFamily: "IkarosLight",

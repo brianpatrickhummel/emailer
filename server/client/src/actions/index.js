@@ -35,3 +35,12 @@ export const fetchSurveys = () => async dispatch => {
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
 };
+
+export const deleteSurvey = (values, history) => async dispatch => {
+  // ********* add surveyID to API route **********
+  const res = await axios.post("/api/surveys/delete");
+  // Redirect via history object provided by withRouter helper
+  history.push("/surveys");
+
+  dispatch({ type: FETCH_SURVEYS, payload: res.data });
+};

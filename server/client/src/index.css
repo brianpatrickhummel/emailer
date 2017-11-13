@@ -33,5 +33,37 @@
   background: #395463;
   color: white;
   border: none;
-  letter-spacing: .1em;
+  letter-spacing: 0.1em;
 }
+
+/* ==== Dashboard Component ==== */
+
+/* Material Icon onHover */
+i:hover {
+  color: rgba(1, 1, 1, 0.5);
+  cursor: pointer;
+}
+
+#addNewSurveyButton {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+/* ==== Delete Survey Modal Dialog ====  */
+#deleteSurveyButton {
+  background-color: #ec6f75;
+  margin: 50px 100px;
+}
+
+#deleteSurveyCancelButton {
+  background-color: #e5e383;
+  color: black;
+  margin: 50px 100px;
+}
+
+#stopHand {
+  font-size: 40px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ==== End Delete Survey Modal Dialog ==== */

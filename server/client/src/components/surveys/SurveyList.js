@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../../actions";
+import { fetchSurveys, deleteSurvey } from "../../actions";
+import "../../index.css";
 
 class SurveyList extends Component {
   // action creator pulls list of user's surveys from MongoDB each time component mounts
@@ -16,11 +17,29 @@ class SurveyList extends Component {
             <div className="card-content white-text">
               <span className="card-title">{survey.title}</span>
               <p>{survey.body}</p>
-              <p className="right">Sent On: {new Date(survey.dateSent).toLocaleDateString()}</p>
             </div>
-            <div className="card-action">
-              <a>Yes: {survey.yes}</a>
-              <a>No: {survey.no}</a>
+            <div className="card-action" style={{ fontFamily: "IkarosLight" }}>
+              <a>
+                Yes: <span>{survey.yes}</span>
+              </a>
+              <a>
+                No: <span>{survey.no}</span>
+              </a>
+              <a className="" style={{ marginBottom: "40px" }}>
+                Sent On: {new Date(survey.dateSent).toLocaleDateString()}
+              </a>
+              <a className="black-text right">
+                <i
+                  className="material-icons"
+                  id={survey._id}
+                  onClick={() => {
+                    this.props.deleteModalOpen(survey._id, survey.title);
+                  }}
+                  style={{ fontSize: "1.7em" }}
+                >
+                  delete
+                </i>
+              </a>
             </div>
           </div>
         </div>
@@ -37,4 +56,4 @@ function mapStateToProps({ surveys }) {
   return { surveys };
 }
 
-export default connect(mapStateToProps, { fetchSurveys })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList);
