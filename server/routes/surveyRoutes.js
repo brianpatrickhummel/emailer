@@ -59,8 +59,9 @@ module.exports = app => {
 
   // Delete a Survey
   app.post("/api/surveys/delete/:deleteSurveyId", requireLogin, async (req, res) => {
+    // Delete survey from DB
     await Survey.findByIdAndRemove(req.params.deleteSurveyId);
-    // const user = await req.user.save();
+    // Fetch and send updated survey list for user as response
     const surveys = await Survey.find({ _user: req.user.id })
       .select({ recipients: false })
       .sort({ dateSent: "desc" });

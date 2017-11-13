@@ -21,9 +21,7 @@ class Header extends Component {
           <li key="1">
             <Payments />
           </li>,
-          <li key="2" style={{ margin: "0 10px 0 25px" }}>
-            Credits: {this.props.auth.credits}
-          </li>,
+          <li key="2">Credits: {this.props.auth.credits}</li>,
           <li key="3">
             <a href="/api/logout">LogOut</a>
           </li>
@@ -39,7 +37,14 @@ class Header extends Component {
             <Link to={this.props.auth ? "/surveys" : "/"} className="left brand-logo" style={{ margin: "0 30px" }}>
               <FontAwesome name="paper-plane" />
             </Link>
-            <ul className="right">{this.renderContent()}</ul>
+            {/* MaterializeCSS collapsible sidebar menu config - initialized in index.html jQuery script */}
+            <a href="#" data-activates="mobile-demo" className="button-collapse right">
+              <i className="material-icons">menu</i>
+            </a>
+            <ul className="right hide-on-med-and-down">{this.renderContent()}</ul>
+            <ul className="side-nav" id="mobile-demo">
+              {this.renderContent()}
+            </ul>
           </div>
         }
       </nav>

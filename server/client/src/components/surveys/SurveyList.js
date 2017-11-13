@@ -26,9 +26,7 @@ class SurveyList extends Component {
               <a>
                 No: <span>{survey.no}</span>
               </a>
-              <a className="" style={{ marginBottom: "40px" }}>
-                Sent On: {new Date(survey.dateSent).toLocaleDateString()}
-              </a>
+              <a style={{ marginBottom: "40px" }}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</a>
               <a className="black-text right">
                 <i
                   className="material-icons deleteSurveyIcon"

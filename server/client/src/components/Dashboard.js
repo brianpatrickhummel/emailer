@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import { Button } from "react-materialize";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
 import { deleteSurvey } from "../actions";
 import "../index.css";
 
@@ -59,8 +58,6 @@ class Dashboard extends Component {
   };
 
   render() {
-    // passing withRouter history object as props
-    const { history } = this.props;
     // Add Survey button is rendered only if local state indicates user has > 0 credits
     var addButton = null;
     if (this.state.hasCredits) {
@@ -123,15 +120,19 @@ class Dashboard extends Component {
           <i className="large material-icons" id="stopHand">
             pan_tool
           </i>
-          <p style={{ letterSpacing: "0.03em" }}>Permanently delete this survey? </p>
+          <p style={{ letterSpacing: "0.03em" }} id="warnStatement">
+            Permanently delete this survey?{" "}
+          </p>
           <h4
+            id="deleteTitle"
             style={{
               color: "#FCC2C5",
               fontWeight: "bolder",
               marginTop: "30px",
               letterSpacing: "0.1em",
               backgroundColor: "#6C5455",
-              borderRadius: "25px"
+              borderRadius: "25px",
+              padding: "10px"
             }}
           >
             {this.state.deleteTitle}
@@ -148,8 +149,8 @@ class Dashboard extends Component {
             waves="light"
             onClick={() => {
               this.setState({ deleteModalIsOpen: false });
-              this.props.deleteSurvey(this.state.deleteId, history);
-              console.log("survey to be deleted: " + this.state.deleteId + " history: " + history);
+              this.props.deleteSurvey(this.state.deleteId);
+              console.log("survey to be deleted: " + this.state.deleteId);
             }}
             className="right"
             id="deleteSurveyButton"
@@ -167,7 +168,7 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps, { deleteSurvey })(withRouter(Dashboard));
+export default connect(mapStateToProps, { deleteSurvey })(Dashboard);
 
 const ModalImage = styled.img`
   width: 125px;

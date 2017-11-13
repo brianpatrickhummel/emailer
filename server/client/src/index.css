@@ -82,10 +82,71 @@
 }
 
 /* ==== HEADER Component ==== */
+.side-nav {
+  text-align: center;
+  background-color: rgba(1, 1, 1, 0.8);
+  padding: 10px;
+}
+
+.side-nav > * {
+  margin: 10px;
+  background-color: rgba(238, 110, 115, 0.75);
+  border: 1px solid rgba(238, 110, 115, 0.5);
+  border-radius: 10px;
+}
+
 .brand-logo {
   transition: all 0.2s ease-in-out;
 }
 
 .brand-logo:hover {
   transform: scale(1.15);
+}
+
+/* ====== Media Queries ====== */
+
+@media (max-width: 992px) {
+  #deleteTitle {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #deleteTitle {
+    font-size: 1.5rem;
+  }
+
+  #deleteSurveyCancelButton {
+    margin: 30px 30px;
+  }
+
+  #deleteSurveyButton {
+    margin: 30px 30px;
+  }
+
+  #warnStatement {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 450px) {
+  #deleteTitle {
+    font-size: 1.2rem;
+  }
+
+  #deleteSurveyCancelButton,
+  #deleteSurveyButton {
+    margin: 30px 0px;
+  }
+
+  #warnStatement {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 380px) {
+  #deleteSurveyCancelButton,
+  #deleteSurveyButton {
+    margin: 30px 0px;
+  }
 }
