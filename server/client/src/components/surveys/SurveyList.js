@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys, deleteSurvey } from "../../actions";
+import { fetchSurveys } from "../../actions";
 import "../../index.css";
 
 class SurveyList extends Component {
@@ -10,7 +10,8 @@ class SurveyList extends Component {
   }
 
   renderSurveys() {
-    return this.props.surveys.reverse().map(survey => {
+    console.log("this.props.surveys = ", this.props.surveys);
+    return this.props.surveys.map(survey => {
       return (
         <div key={survey._id} className="col s12">
           <div className="card blue-grey darken-1">
@@ -30,7 +31,7 @@ class SurveyList extends Component {
               </a>
               <a className="black-text right">
                 <i
-                  className="material-icons"
+                  className="material-icons deleteSurveyIcon"
                   id={survey._id}
                   onClick={() => {
                     this.props.deleteModalOpen(survey._id, survey.title);
@@ -56,4 +57,4 @@ function mapStateToProps({ surveys }) {
   return { surveys };
 }
 
-export default connect(mapStateToProps, { fetchSurveys, deleteSurvey })(SurveyList);
+export default connect(mapStateToProps, { fetchSurveys })(SurveyList);

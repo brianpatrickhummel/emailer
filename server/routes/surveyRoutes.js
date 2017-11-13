@@ -17,7 +17,7 @@ module.exports = app => {
   app.get("/api/surveys", requireLogin, async (req, res) => {
     const surveys = await Survey.find({ _user: req.user.id })
       .select({ recipients: false })
-      .sort({ dateSent: "asc" });
+      .sort({ dateSent: "desc" });
     res.send(surveys);
   });
 
@@ -55,6 +55,16 @@ module.exports = app => {
     } catch (err) {
       res.status(422).send(err);
     }
+  });
+
+  // Delete a Survey
+  app.post("/api/surveys/delete/:deleteSurveyId", requireLogin, async (req, res) => {
+    await Survey.findByIdAndRemove(req.params.deleteSurveyId);
+    // const user = await req.user.save();
+    const surveys = await Survey.find({ _user: req.user.id })
+      .select({ recipients: false })
+      .sort({ dateSent: "desc" });
+    res.send(surveys);
   });
 
   // Managing Survey Feedback Data from SendGrid Webhook

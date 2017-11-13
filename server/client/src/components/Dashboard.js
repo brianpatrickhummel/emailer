@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import Modal from "react-modal";
 import { Button } from "react-materialize";
 import styled from "styled-components";
+import { withRouter } from "react-router-dom";
+import { deleteSurvey } from "../actions";
 import "../index.css";
 
 class Dashboard extends Component {
@@ -42,7 +44,7 @@ class Dashboard extends Component {
       if (this.props.auth.credits < 1 && this.state.count === 0) {
         this.setState({ modalIsOpen: true, count: 1 });
         // If user just purchased credits, adjust state so that Add Survey button will render
-      } else if (!this.state.hasCredits && this.props.auth.credits > 1) {
+      } else if (!this.state.hasCredits && this.props.auth.credits > 0) {
         this.setState({ hasCredits: true });
       }
     }
@@ -57,6 +59,8 @@ class Dashboard extends Component {
   };
 
   render() {
+    // passing withRouter history object as props
+    const { history } = this.props;
     // Add Survey button is rendered only if local state indicates user has > 0 credits
     var addButton = null;
     if (this.state.hasCredits) {
@@ -142,7 +146,11 @@ class Dashboard extends Component {
           </Button>
           <Button
             waves="light"
-            onClick={() => this.setState({ deleteModalIsOpen: false })}
+            onClick={() => {
+              this.setState({ deleteModalIsOpen: false });
+              this.props.deleteSurvey(this.state.deleteId, history);
+              console.log("survey to be deleted: " + this.state.deleteId + " history: " + history);
+            }}
             className="right"
             id="deleteSurveyButton"
           >
@@ -159,7 +167,7 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(mapStateToProps, { deleteSurvey })(withRouter(Dashboard));
 
 const ModalImage = styled.img`
   width: 125px;

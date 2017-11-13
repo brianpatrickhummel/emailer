@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Payments from "./Payments";
 import FontAwesome from "react-fontawesome";
+import "../index.css";
 
 class Header extends Component {
   renderContent() {

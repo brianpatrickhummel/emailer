@@ -36,12 +36,17 @@
   letter-spacing: 0.1em;
 }
 
-/* ==== Dashboard Component ==== */
+/* ==== DASHBOARD Component ==== */
 
+/* == Survey List == */
 /* Material Icon onHover */
-i:hover {
-  color: rgba(1, 1, 1, 0.5);
+.deleteSurveyIcon {
+  transition: all 0.2s ease-in-out;
+}
+.deleteSurveyIcon:hover {
+  color: rgb(357, 76, 68);
   cursor: pointer;
+  transform: scale(1.3);
 }
 
 #addNewSurveyButton {
@@ -53,12 +58,22 @@ i:hover {
 #deleteSurveyButton {
   background-color: #ec6f75;
   margin: 50px 100px;
+  transition: all 0.2s ease-in-out;
+}
+
+#deleteSurveyButton:hover {
+  transform: scale(1.1);
 }
 
 #deleteSurveyCancelButton {
   background-color: #e5e383;
   color: black;
   margin: 50px 100px;
+  transition: all 0.2s ease-in-out;
+}
+
+#deleteSurveyCancelButton:hover {
+  transform: scale(1.1);
 }
 
 #stopHand {
@@ -66,4 +81,11 @@ i:hover {
   color: rgba(255, 255, 255, 0.7);
 }
 
-/* ==== End Delete Survey Modal Dialog ==== */
+/* ==== HEADER Component ==== */
+.brand-logo {
+  transition: all 0.2s ease-in-out;
+}
+
+.brand-logo:hover {
+  transform: scale(1.15);
+}
