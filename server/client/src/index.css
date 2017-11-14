@@ -36,8 +36,14 @@
   letter-spacing: 0.1em;
 }
 
+/* ==== LANDING Component ==== */
+.collapsible-header:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 /* ==== DASHBOARD Component ==== */
 
+/* Changing background color behind Modals */
 div.ReactModal__Overlay--after-open {
   background-color: rgba(1, 1, 1, 0.85) !important;
 }
