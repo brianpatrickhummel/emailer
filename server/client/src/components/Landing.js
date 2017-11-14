@@ -76,9 +76,8 @@ class Landing extends Component {
               stores nor has access to any of the transaction details.
             </CollapsibleItem>
             <CollapsibleItem header="compose survey" icon="content_paste">
-              title your survey and provide a subject line for the email. <br />take a moment to formulate a single,
-              meaningful question to present the recipient, for which you seek a black & white, binary - Yes or No -
-              answer.
+              title your survey and provide a subject line for the email. <br />compose a single, meaningful question,
+              to which a recipient can provide a binary - Yes or No - answer.
             </CollapsibleItem>
             <CollapsibleItem header="email to recipients" icon="cloud_upload">
               enter a comma-separated list of the recipient email addresses.
