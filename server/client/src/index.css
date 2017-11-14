@@ -38,6 +38,14 @@
 
 /* ==== DASHBOARD Component ==== */
 
+div.ReactModal__Overlay--after-open {
+  background-color: rgba(1, 1, 1, 0.85) !important;
+}
+
+div.ReactModal__Content--after-open {
+  border: 1px solid rgba(1, 1, 1, 0.6) !important;
+}
+
 /* == Survey List == */
 /* Material Icon onHover */
 .deleteSurveyIcon {

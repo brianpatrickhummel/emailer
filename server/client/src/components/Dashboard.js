@@ -96,7 +96,7 @@ class Dashboard extends Component {
               Enter CC# <span style={{ color: "#6A9CB9", fontSize: "24px", margin: "0 7px" }}>
                 4242 4242 4242 4242
               </span>{" "}
-              & false data for the remaining fields.
+              & false data for the remaining fields
             </p>
             <p style={{ display: "inline-block" }}>Once credits have been purchased, click the</p>
             <ModalImage2 src={require("../images/addButton.png")} />button to create a survey
