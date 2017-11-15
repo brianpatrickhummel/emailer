@@ -78,6 +78,17 @@ div.ReactModal__Content--after-open {
 }
 
 /* == Survey List == */
+.fixRight {
+  position: absolute;
+  right: -10px;
+  top: 17.5px;
+}
+
+.wrapToNextLine {
+  display: inline-block;
+  margin-top: 5px;
+}
+
 /* Material Icon onHover */
 .deleteSurveyIcon {
   transition: all 0.2s ease-in-out;

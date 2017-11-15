@@ -19,15 +19,24 @@ class SurveyList extends Component {
               <span className="card-title">{survey.title}</span>
               <p>{survey.body}</p>
             </div>
-            <div className="card-action" style={{ fontFamily: "IkarosLight" }}>
+            <div
+              className="card-action"
+              style={{
+                fontFamily: "IkarosLight",
+                overflow: "auto",
+                width: "100%"
+              }}
+            >
               <a>
                 Yes: <span>{survey.yes.toLocaleString()}</span>
               </a>
               <a>
                 No: <span>{survey.no.toLocaleString()}</span>
               </a>
-              <a style={{ marginBottom: "40px" }}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</a>
-              <a className="black-text right">
+              <span className="wrapToNextLine">
+                <a>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</a>
+              </span>
+              <a className="black-text right fixRight">
                 <i
                   className="material-icons deleteSurveyIcon"
                   id={survey._id}
