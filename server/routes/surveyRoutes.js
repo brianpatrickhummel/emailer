@@ -125,6 +125,6 @@ module.exports = app => {
 
   // SendGrid Redirect post-submission survey feedback (handles both Yes & No responses)
   app.get("/api/surveys/:surveyid/:response", (req, res) => {
-    res.send("Thank you for your feedback!");
+    res.redirect("/surveys/feedback");
   });
 };
