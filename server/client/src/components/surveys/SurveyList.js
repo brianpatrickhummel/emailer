@@ -21,10 +21,10 @@ class SurveyList extends Component {
             </div>
             <div className="card-action" style={{ fontFamily: "IkarosLight" }}>
               <a>
-                Yes: <span>{survey.yes}</span>
+                Yes: <span>{survey.yes.toLocaleString()}</span>
               </a>
               <a>
-                No: <span>{survey.no}</span>
+                No: <span>{survey.no.toLocaleString()}</span>
               </a>
               <a style={{ marginBottom: "40px" }}>Sent On: {new Date(survey.dateSent).toLocaleDateString()}</a>
               <a className="black-text right">
