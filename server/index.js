@@ -32,9 +32,10 @@ app.use(
     keys: [keys.cookieKey]
   })
 );
-// instruct Passport to use Cookies
+// express loads the session data, passport.initialize accesses req.session.passport.user
 app.use(passport.initialize());
-// passport.session calls the deserializeUser() method
+// passport.session detects a serialized user, calls the deserializeUser() method
+// which attaches user to req.user
 app.use(passport.session());
 
 // ROUTES

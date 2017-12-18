@@ -3,7 +3,7 @@
 const passport = require("passport");
 
 module.exports = app => {
-  // Passport redirects request to Google for OAuth
+  // Passport redirects request to Google for OAuth authorization
   app.get(
     "/auth/google",
     passport.authenticate("google", {

@@ -8,7 +8,7 @@ const keys = require("../config/keys");
 // This User object is a model class, from which new model instances can be created and saved to our database
 const User = mongoose.model("users");
 
-// the mongoose user model instance is converted into an id for insertion into token
+//mongo user passed from req.login(), user.id will be inserted into token
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -43,6 +43,7 @@ passport.use(
       }
       // Create a new instance/document of the User Model
       const user = await new User({ googleID: profile.id }).save();
+      // Call done, back to passport.authenticate which calls req.login/serializeUser();
       done(null, user);
     }
   )
