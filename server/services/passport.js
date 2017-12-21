@@ -13,7 +13,7 @@ passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-// cookie user id is converted back into a mongoose user model instance (req.user)
+// cookie req.session.passport.user id is converted back into a mongoose user model instance (req.user)
 passport.deserializeUser((id, done) => {
   User.findById(id).then(user => {
     done(null, user);
