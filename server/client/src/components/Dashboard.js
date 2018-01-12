@@ -9,7 +9,7 @@ import { deleteSurvey } from "../actions";
 import "../index.css";
 
 class Dashboard extends Component {
-  // Create local state for reference by the conditional governing display of modal dialog box
+  // Create local state/defaults for reference by the conditional governing display of modal dialog box
   state = {
     modalIsOpen: false,
     count: 0,
@@ -49,6 +49,7 @@ class Dashboard extends Component {
     }
   }
 
+  // function passed to surveylist component as props to open modal when delete icon is clicked on a list item
   deleteModalOpen = (id, title) => {
     this.setState({ deleteModalIsOpen: true, deleteId: id, deleteTitle: title });
   };
