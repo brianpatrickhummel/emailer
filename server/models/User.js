@@ -15,12 +15,12 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  DisplayName: {
+  displayName: {
     type: String,
     trim: true,
     uppercase: true
   },
-  Email: {
+  email: {
     type: String,
     trim: true,
     uppercase: true
