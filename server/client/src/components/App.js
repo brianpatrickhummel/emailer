@@ -13,7 +13,8 @@ import SurveyFeedback from "./surveys/SurveyFeedback";
 
 class App extends Component {
   componentDidMount() {
-    this.props.fetchUser(); // when app launches call the fetchUser action creator
+    // high-level call to fetchUser action creator
+    this.props.fetchUser(); 
   }
 
   render() {

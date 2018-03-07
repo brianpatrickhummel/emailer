@@ -10,7 +10,11 @@ const userSchema = new Schema({
   credits: {
     type: Number,
     default: 0
-  }
+  },
+  userCreated: {
+    type: Date,
+    default: Date.now
+  },
 });
 
 // Create a "users" model with the userSchema schema and loads the schema into Mongoose

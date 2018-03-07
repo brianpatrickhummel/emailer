@@ -42,7 +42,7 @@ passport.use(
         return done(null, existingUser);
       }
       // Create a new instance/document of the User Model
-      const user = await new User({ googleID: profile.id }).save();
+      const user = await new User({ googleID: profile.id, displayName: profile.displayName }).save();
       // Call done, back to passport.authenticate which calls req.login/serializeUser();
       done(null, user);
     }
