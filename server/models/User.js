@@ -15,6 +15,16 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now
   },
+  DisplayName: {
+    type: String,
+    trim: true,
+    uppercase: true
+  },
+  Email: {
+    type: String,
+    trim: true,
+    uppercase: true
+  }
 });
 
 // Create a "users" model with the userSchema schema and loads the schema into Mongoose
